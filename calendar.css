@@ -1,7 +1,7 @@
-.book-calendar-wrapper {
+.book-calendar {
   overflow-x: auto;
 }
-.book-calendar {
+.book-calendar-wrapper {
   width: 750px;
   background-color: #FBFAF9;
   position: relative;
