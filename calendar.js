@@ -39,7 +39,7 @@ var BookCalendar = function(options) {
   };
 
   this.init = function() {
-    var template = '<table width="100%" class="book-calendar-main-container"> <tr> <td> <table class="book-calendar-header"> <thead> <tr> <th colspan="' + this.daysCount + '" align="right"> <button class="btn btn-primary btn-xs book-calendar-prev"> <<< </button> <button class="btn btn-primary btn-xs book-calendar-next"> >>> </button> </th> </tr><tr class="book-calendar-months"> </tr><tr class="book-calendar-days"> </tr></thead> </table> </td></tr><tr> <td> <div class="book-calendar-data-container"> <table width="100%"> <tbody class="book-calendar-data"> </tbody> </table> </div></td></tr></table>';
+    var template = '<div class="book-calendar-wrapper"><table width="100%" class="book-calendar-main-container"> <tr> <td> <table class="book-calendar-header"> <thead> <tr> <th colspan="' + this.daysCount + '" align="right"> <button class="btn btn-primary btn-xs book-calendar-prev"> <<< </button> <button class="btn btn-primary btn-xs book-calendar-next"> >>> </button> </th> </tr><tr class="book-calendar-months"> </tr><tr class="book-calendar-days"> </tr></thead> </table> </td></tr><tr> <td> <div class="book-calendar-data-container"> <table width="100%"> <tbody class="book-calendar-data"> </tbody> </table> </div></td></tr></table></div>';
     var container = document.getElementById(this.el);
     container.innerHTML = template;
     this.draw();
@@ -50,7 +50,7 @@ var BookCalendar = function(options) {
     return {
       element: this.el,
       firstTableCells: container.getElementsByClassName('book-calendar-day'),
-      secondTableCells: container.getElementsByClassName('ulgy-calendar-cell'),
+      secondTableCells: container.getElementsByClassName('book-calendar-cell'),
       dataContainer: container.getElementsByClassName('book-calendar-data')[0],
       monthsContainer: container.getElementsByClassName('book-calendar-months')[0],
       daysContainer: container.getElementsByClassName('book-calendar-days')[0],
@@ -252,8 +252,16 @@ var BookCalendar = function(options) {
       var displayArray = this.getDisplayDates();
       var colspans = this.getHead();
       var dt = '';
+      var lastCell = '';
       for(var i in displayArray) {
-        dt += '<td  style="width: ' + this.cellPercentsWidth + '%" class="book-calendar-day">' + displayArray[i].getDate()  + '<br><span class="book-calendar-day-name">' + this.getDay(displayArray[i].getDay()).substring(0, 2) + '</span></td>';
+        var nextDay = new Date(displayArray[i]);
+        nextDay.setDate(nextDay.getDate() + 1);
+        if(displayArray[i].getMonth() != nextDay.getMonth()) {
+          lastCell = "book-calendar-cell-last";
+        } else {
+          lastCell = '';
+        }
+        dt += '<td  style="width: ' + this.cellPercentsWidth + '%" class="book-calendar-day ' + lastCell + '">' + displayArray[i].getDate()  + '<br><span class="book-calendar-day-name">' + this.getDay(displayArray[i].getDay()).substring(0, 2) + '</span></td>';
       }
       var thead = '';
       if(colspans.first > 0) {
@@ -276,7 +284,14 @@ var BookCalendar = function(options) {
           if(hours[i]) {
             var display = new Date(hours[i]);
             var displayHours = display.getHours() + ":" + (display.getMinutes()<10 ? '0' : '') + display.getMinutes();
+
             cellActive = "book-calendar-cell-active book-calendar-cell-active-" + this.el;
+
+            var nextDay = new Date(display);
+            nextDay.setDate(nextDay.getDate() + 1);
+            if(display.getMonth() != nextDay.getMonth()) {
+              cellActive += " book-calendar-cell-last";
+            }
 
             if(this.selectedDate) {
               var tempDate = new Date(this.selectedDate);
@@ -291,7 +306,7 @@ var BookCalendar = function(options) {
             displayHours = '&nbsp;';
             cellActive = "book-calendar-cell-disabled";
           }
-          dataText += '<td style="width: ' + this.cellPercentsWidth+ '%" data-date="' + display + '" class="ulgy-calendar-cell ' + cellActive + '"> ' + displayHours + ' </td>';
+          dataText += '<td style="width: ' + this.cellPercentsWidth+ '%" data-date="' + display + '" class="book-calendar-cell ' + cellActive + '"> ' + displayHours + ' </td>';
         }
         dataText += '</tr>';
       }
