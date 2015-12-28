@@ -1,81 +1,75 @@
+.book-calendar-wrapper {
+  overflow-x: auto;
+}
 .book-calendar {
+  width: 750px;
+  background-color: #FBFAF9;
+  position: relative;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
   overflow-y: auto;
 }
-
-.book-calendar-wrapper {
-   width: 750px;
-   background-color: #FBFAF9;
-   position: relative;
-   top:0;
-   bottom: 0;
-   left: 0;
-   right: 0;
-   margin: auto;
-}​
-
 .book-calendar table {
   border-collapse: collapse;
 }
-
 .book-calendar table td {
   font-family: arial;
   font-size: 12px;
 }
-
 .book-calendar table, td, th{
-  border: 2px solid #fff;
   border-spacing: 0px;
   text-align: center;
 }
-
-.book-calendar-main-container  {
-  border: none !important;
-  border-spacing: 0px !important;
+.book-calendar-data-container td {
+  border: 2px solid #fff;
 }
-
-
+.book-calendar-data td:first-child {
+  border-left: none;
+}
+.book-calendar-data td:last-child {
+  border-right: none;
+}
+.book-calendar-data tr:last-child td {
+  border-bottom: none;
+}
+.book-calendar-main-container {
+  border-spacing: 0px;
+}
 .book-calendar-day-name {
   float: right;
   margin-right: 10%;
 }
-
 .book-calendar-day {
   border-right: 2px solid #FBFAF9;
 }
-
 .book-calendar-cell-active {
   color: #4FB548;
   font-size: 18px !important;
   height: 50px;
   cursor: pointer;
+  background: #fbfbfb;
 }
-
 .book-calendar-cell-disabled {
-  background: #F0EFEF;
+  background: #f0f0f0;
   height: 50px;
 }
-
 .book-calendar-cell-active-selected {
-  background: #E5F1D1;
+  background: #e4ffd6;
 }
-
-
 .book-calendar-data-container {
-  height: 350px;
-  overflow-y: scroll;
-
+  height: auto;
+  overflow-y: auto;
+  border-top: 2px solid #fff;
 }
-
-
 .book-calendar-header {
-  width: calc(100% - 18px);
+  width: 100%;
 }
-
-
 .book-calendar-prev {
   float: left;
 }
-
 .book-calendar-next {
   float: right;
 }
