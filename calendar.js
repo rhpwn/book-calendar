@@ -3,7 +3,6 @@ var BookCalendar = function(options) {
   this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'Semptember', 'October', 'November', 'December'];
   this.days = ['Sunday', 'Saturday', 'Friday', 'Thursday', 'Wednesday', 'Tuesday', 'Monday'];
 
-
   this.daysCount = options.daysCount ? options.daysCount : 7;
   this.el = options.el;
   this.data = options.data;
