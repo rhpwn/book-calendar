@@ -12,18 +12,7 @@
     var date2 = new Date();
     date2.setHours(date2.getHours() + 1);
     var dates = [date1,date2];
-      <div id="book-calendar" class="book-calendar">
-      </div>
-    <script type="text/javascript">
 
-    var dates = [];
-    var dat = new Date();
-
-
-    for(var i=0; i < 200; i++) {
-      dat.setHours(dat.getHours() + 1);
-      dates.push(new Date(dat));
-    }
 
     var calendar = new BookCalendar({
       el: 'book-calendar',
