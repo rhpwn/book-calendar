@@ -38,7 +38,7 @@ var BookCalendar = function(options) {
   };
 
   this.init = function() {
-    var template = '<div class="book-calendar-wrapper"><table width="100%" class="book-calendar-main-container"> <tr> <td> <table class="book-calendar-header"> <thead> <tr> <th colspan="' + this.daysCount + '" align="right"> <button class="btn btn-primary btn-xs book-calendar-prev"> <<< </button> <button class="btn btn-primary btn-xs book-calendar-next"> >>> </button> </th> </tr><tr class="book-calendar-months"> </tr><tr class="book-calendar-days"> </tr></thead> </table> </td></tr><tr> <td> <div class="book-calendar-data-container"> <table width="100%"> <tbody class="book-calendar-data"> </tbody> </table> </div></td></tr></table></div>';
+    var template = '<div class="book-calendar-wrapper"><table width="100%" class="book-calendar-main-container"> <tr> <td> <table class="book-calendar-header"> <thead> <tr class="book-calendar-months"><a href="#" class="nav-arrow book-calendar-prev"></a><a href="#" class="nav-arrow book-calendar-next"></a></tr><tr class="book-calendar-days"> </tr></thead> </table> </td></tr><tr> <td> <div class="book-calendar-data-container"> <table width="100%"> <tbody class="book-calendar-data"> </tbody> </table> </div></td></tr></table></div>';
     var container = document.getElementById(this.el);
     container.innerHTML = template;
     this.draw();
