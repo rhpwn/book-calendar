@@ -17,7 +17,7 @@
   font-family: arial;
   font-size: 12px;
 }
-.book-calendar table, td, th{
+.book-calendar table, td, th {
   border-spacing: 0px;
   text-align: center;
 }
@@ -54,9 +54,18 @@
   line-height: 20px;
 }
 .book-calendar-months {
-  line-height: 38px;
   border-bottom: 4px solid #fff;
 }
+.book-calendar-months th {
+  line-height: 38px;
+  height: 38px;
+}
+.book-calendar-months th[colspan="1"] {
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: -5000px;
+}
+
 .book-calendar-days .book-calendar-cell-last,
 .book-calendar-months th:first-child:not(:only-child) {
   border-right: 2px solid #fff;
