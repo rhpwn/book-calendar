@@ -4,18 +4,25 @@
     <script src="calendar.js"></script>
   </head>
   <body>
-    <div id="book-calendar" class="book-calendar">
-    </div>
-
+      <div id="book-calendar" class="book-calendar">
+      </div>
     <script type="text/javascript">
 
-    var dates = [new Date('2015-12-10T05:25:18'), new Date('2015-12-15T12:20:00'), new Date('2015-12-15T12:19:00'), new Date('2015-12-15T12:00:00'), new Date('2015-12-15T12:35:00'), new Date('2015-12-15T12:36:00'), new Date('2015-12-29T05:25:18')];
+    var dates = [];
+    var dat = new Date();
+
+
+    for(var i=0; i < 200; i++) {
+      dat.setHours(dat.getHours() + 1);
+      dates.push(new Date(dat));
+    }
 
     var calendar = new BookCalendar({
       el: 'book-calendar',
       moveOnExisting: false,
       startDate: new Date(),
       step: 7,
+      daysCount: 14,
       data: dates,
       onMoveLeft: function(cb) {
         cb();
