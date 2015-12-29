@@ -36,10 +36,10 @@ var BookCalendar = function(options) {
         monthsShort: ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.', 'Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.'],
         weekdays: ['Sunday', 'Saturday', 'Friday', 'Thursday', 'Wednesday', 'Tuesday', 'Monday'],
         weekdaysShort: ['Sun', 'Sat', 'Fri', 'Thu', 'Wed', 'Tue', 'Mon'],
-      }
+      };
     }
     return this.language;
-  }
+  };
 
   this.getStartDate = function() {
     return new Date(this.startDate);
@@ -70,7 +70,7 @@ var BookCalendar = function(options) {
       nextButton: container.getElementsByClassName('book-calendar-next')[0],
       prevButton: container.getElementsByClassName('book-calendar-prev')[0],
       activeCells: container.getElementsByClassName('book-calendar-cell-active' + this.el)
-    }
+    };
   };
 
   this.groupHoursByDay = function(dates) {
@@ -83,7 +83,7 @@ var BookCalendar = function(options) {
       return acc;
     },[{}])
     .reduce(function(acc, v){
-      Object.keys(v).forEach(function(k){acc.push({day:k, times:v[k]})});
+      Object.keys(v).forEach(function(k){acc.push({day:k, times:v[k]});});
       return acc;
     },[]);
     return obj;
@@ -105,7 +105,7 @@ var BookCalendar = function(options) {
     var sd = new Date(this.startDate);
     sd.setHours(0,0,0,0);
 
-    var dd = this.data;;
+    var dd = this.data;
 
     var collectedDates = [];
     for(var i in dd) {
@@ -121,7 +121,7 @@ var BookCalendar = function(options) {
 
     this.draw();
     this.onMoveLeft(function() {});
-  },
+  };
 
   this.moveExistingRight = function() {
     var sd = new Date(this.startDate);
@@ -142,22 +142,20 @@ var BookCalendar = function(options) {
 
     this.draw();
     this.onMoveRight(function() {});
-  },
+  };
 
   this.moveLeft = function(step) {
     var ms = step ? step : this.step;
     this.startDate.setDate(this.startDate.getDate() - parseInt(ms));
     this.draw();
-    this.onMoveLeft(function() {
-    });
+    this.onMoveLeft(function() {});
   };
 
   this.moveRight = function(step) {
     var ms = step ? step : this.step;
     this.startDate.setDate(this.startDate.getDate() + parseInt(ms));
     this.draw();
-    this.onMoveRight(function() {
-    });
+    this.onMoveRight(function() {});
   };
 
   this.prevDisabled = function(disabled) {
@@ -167,7 +165,7 @@ var BookCalendar = function(options) {
 
   this.getDisplayDates = function() {
     var today = new Date(this.startDate);
-    var displayArray = new Array();
+    var displayArray = [];
     for(var dd = 0; dd < this.daysCount; dd ++) {
       var x = new Date(today);
       displayArray.push(x);
@@ -180,14 +178,14 @@ var BookCalendar = function(options) {
     return {
       long: this.getLocale().months[n].charAt(0).toUpperCase() + this.getLocale().months[n].slice(1),
       short: this.getLocale().monthsShort[n].charAt(0).toUpperCase() + this.getLocale().monthsShort[n].slice(1),
-    }
+    };
   };
 
   this.getDay = function(n) {
     return {
       long: this.getLocale().weekdays[n],
       short: this.getLocale().weekdaysShort[n],
-    }
+    };
   };
 
   this.getMaxInputs = function() {
@@ -206,7 +204,7 @@ var BookCalendar = function(options) {
     var colspans = {
       first: 0,
       second: 0,
-    }
+    };
     colspans.firstMonth = this.getMonth(startMonth).short + " " + this.startDate.getFullYear();
     var ix = 0;
     for(var i in displayDates) {
@@ -243,19 +241,19 @@ var BookCalendar = function(options) {
     self = this;
     keyElements.prevButton.onclick = function() {
       if(self.moveOnExisting) {
-        self.moveExistingLeft()
+        self.moveExistingLeft();
       } else {
         self.moveLeft();
       }
     };
     keyElements.nextButton.onclick = function() {
       if(self.moveOnExisting) {
-        self.moveExistingRight()
+        self.moveExistingRight();
       } else {
         self.moveRight();
       }
     };
-  },
+  };
 
   this.onSelect = options.onSelect ? options.onSelect : function(selectedDate) {
     return selectedDate;
@@ -296,20 +294,18 @@ var BookCalendar = function(options) {
       var displayDates = this.getDisplayDates();
 
       var dc = this.daysCount - 1;
-      for(var i = 0; i < this.getMaxInputs(); i++) {
+      for(i = 0; i < this.getMaxInputs(); i++) {
         dataText += '<tr>';
         for(var j = 0; j <= dc ; j++) {
           var hours = this.getHoursByDate(displayDates[j]);
           var cellActive = '';
+          var display = new Date(hours[i]);
+          var displayHours =  display.getHours() + "<sup>" + (display.getMinutes()<10 ? '0' : '') + display.getMinutes() + '</sup>';
+          var nd = new Date(display);
           if(hours[i]) {
-            var display = new Date(hours[i]);
-            var displayHours =  display.getHours() + "<sup>" + (display.getMinutes()<10 ? '0' : '') + display.getMinutes() + '</sup>';
-
             cellActive = "book-calendar-cell-active book-calendar-cell-active-" + this.el;
-
-            var nextDay = new Date(display);
-            nextDay.setDate(nextDay.getDate() + 1);
-            if(display.getMonth() != nextDay.getMonth()) {
+            nd.setDate(nd.getDate() + 1);
+            if(display.getMonth() != nd.getMonth()) {
               cellActive += " book-calendar-cell-last";
             }
 

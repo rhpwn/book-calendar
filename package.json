@@ -1,0 +1,32 @@
+{
+  "name": "book-calendar",
+  "version": "1.0.0",
+  "description": "Calendar with hour select",
+  "author": "Dinu Rodnitchi <rodnitchi@gmail.com> (https://github.com/rhpwn)",
+  "contributors": [],
+  "keywords": [
+    "calendar",
+    "date",
+    "time"
+  ],
+  "main": "./src/calendar.js",
+  "engines": {
+    "node": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rhpwn/book-calendar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rhpwn/book-calendar/issues"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-contrib-jshint": "^0.11.3",
+    "grunt-jasmine-runner": "^0.6.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  }
+}
