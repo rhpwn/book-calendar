@@ -62,8 +62,8 @@ var BookCalendar = function(options) {
     var container = document.getElementById(this.el);
     return {
       element: this.el,
-      firstTableCells: container.getElementsByClassName('book-calendar-day'),
-      secondTableCells: container.getElementsByClassName('book-calendar-cell'),
+      container: container,
+      calendarWrapper: container.getElementsByClassName('book-calendar-wrapper')[0],
       dataContainer: container.getElementsByClassName('book-calendar-data')[0],
       monthsContainer: container.getElementsByClassName('book-calendar-months')[0],
       daysContainer: container.getElementsByClassName('book-calendar-days')[0],
@@ -272,6 +272,7 @@ var BookCalendar = function(options) {
       var colspans = this.getHead();
       var dt = '';
       var lastCell = '';
+
       for(var i in displayArray) {
         var nextDay = new Date(displayArray[i]);
         nextDay.setDate(nextDay.getDate() + 1);
@@ -280,11 +281,11 @@ var BookCalendar = function(options) {
         } else {
           lastCell = '';
         }
-        dt += '<td  style="width: ' + this.cellPercentsWidth + '%" class="book-calendar-day ' + lastCell + '">' + displayArray[i].getDate()  + '<br><span class="book-calendar-day-name">' + this.getDay(displayArray[i].getDay()).short + '</span></td>';
+        dt += '<td  style="width: ' + this.cellPercentsWidth + '%" class="book-calendar-day ' + lastCell + '">' + (displayArray[i].getDate()<10 ? '0' : '') + displayArray[i].getDate()  + '<br><span class="book-calendar-day-name">' + this.getDay(displayArray[i].getDay()).short + '</span></td>';
       }
       var thead = '';
       if(colspans.first > 0) {
-        thead += '<th style="width: ' + this.cellPercentsWidth + '%" colspan="' + colspans.first + '"> ' + colspans.firstMonth + ' </th>';
+        thead += '<th colspan="' + colspans.first + '"> ' + colspans.firstMonth + ' </th>';
       }
       if(colspans.second > 0) {
         thead += '<th colspan="' + colspans.second + '"> ' + colspans.lastMonth + ' </th>';
@@ -302,7 +303,7 @@ var BookCalendar = function(options) {
           var cellActive = '';
           if(hours[i]) {
             var display = new Date(hours[i]);
-            var displayHours = display.getHours() + ":" + (display.getMinutes()<10 ? '0' : '') + display.getMinutes();
+            var displayHours =  display.getHours() + "<sup>" + (display.getMinutes()<10 ? '0' : '') + display.getMinutes() + '</sup>';
 
             cellActive = "book-calendar-cell-active book-calendar-cell-active-" + this.el;
 
@@ -334,6 +335,10 @@ var BookCalendar = function(options) {
     } else {
       console.log('Error. Key elements not found!');
     }
+
+    //alert(keyElements.container.offsetWidth);
+
+    keyElements.calendarWrapper.style.width = keyElements.container.offsetWidth - 40 + 'px';
 
     var ms = this.step;
     var cd = new Date(this.minDate);

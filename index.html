@@ -2,9 +2,13 @@
   <head>
     <link type="text/css" rel="stylesheet" href="calendar.css">
     <script src="calendar.js"></script>
+     <script src="locale/ro.js"></script>
   </head>
   <body>
-    <div id="book-calendar" class="book-calendar">
+
+    <div style="width: 750px;">
+      <div id="book-calendar" class="book-calendar">
+      </div>
     </div>
 
     <script type="text/javascript">
@@ -19,11 +23,11 @@
     }
 
     var calendar = new BookCalendar({
-      locale: 'en',
+      locale: 'ro',
       el: 'book-calendar',
       moveOnExisting: false,
       startDate: new Date(),
-      step: 7,
+      step: 1,
       daysCount: 14,
       data: dates,
       onMoveLeft: function(cb) {
