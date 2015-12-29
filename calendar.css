@@ -3,14 +3,12 @@
 }
 .book-calendar-wrapper {
   width: 750px;
-  background-color: #FBFAF9;
   position: relative;
   top:0;
   bottom: 0;
   left: 0;
   right: 0;
   margin: 0 auto;
-  overflow-y: auto;
 }
 .book-calendar table {
   border-collapse: collapse;
@@ -19,9 +17,12 @@
   font-family: arial;
   font-size: 12px;
 }
-.book-calendar table, td, th{
+.book-calendar table, td, th {
   border-spacing: 0px;
   text-align: center;
+}
+.book-calendar-data {
+  direction: ltr;
 }
 .book-calendar-data-container td {
   border: 2px solid #fff;
@@ -35,22 +36,46 @@
 .book-calendar-data tr:last-child td {
   border-bottom: none;
 }
+.book-calendar-data tr:first-child td {
+  border-top: none;
+}
 .book-calendar-main-container {
   border-spacing: 0px;
 }
 .book-calendar-day-name {
   float: right;
-  margin-right: 10%;
+  padding-right: 10px;
 }
-.book-calendar-day {
-  border-right: 2px solid #FBFAF9;
+.book-calendar-days {
+  font-weight: bold;
+}
+.book-calendar-days td {
+  padding: 5px 0;
+  line-height: 20px;
+}
+.book-calendar-months {
+  border-bottom: 4px solid #fff;
+}
+.book-calendar-months th {
+  line-height: 38px;
+  height: 38px;
+}
+.book-calendar-months th[colspan="1"] {
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: -5000px;
+}
+
+.book-calendar-days .book-calendar-cell-last,
+.book-calendar-months th:first-child:not(:only-child) {
+  border-right: 2px solid #fff;
 }
 .book-calendar-cell-active {
   color: #4FB548;
   font-size: 18px !important;
   height: 50px;
   cursor: pointer;
-  background: #fbfbfb;
+  background: #f8f8f8;
 }
 .book-calendar-cell-disabled {
   background: #f0f0f0;
@@ -61,15 +86,63 @@
 }
 .book-calendar-data-container {
   height: auto;
-  overflow-y: auto;
+  max-height: 350px;
   border-top: 2px solid #fff;
+  direction: rtl;
+  width: calc(100% + 35px);
+  display: block;
+  position: relative;
+  margin-left: -45px;
+  padding-left: 10px;
+  overflow-y: scroll;
 }
+
+.book-calendar-data-container::-webkit-scrollbar-button:vertical:decrement {
+  background-image: url('images/up-arrow.png');
+}
+.book-calendar-data-container::-webkit-scrollbar-button:vertical:increment {
+  background-image: url('images/down-arrow.png');
+}
+.book-calendar-data-container::-webkit-scrollbar {
+  width: 35px;
+  background-color: #fbfbfb;
+}
+
+.book-calendar-data-container::-webkit-scrollbar-button:start:decrement,
+.book-calendar-data-container::-webkit-scrollbar-button:end:increment {
+  height: 30px;
+  width: 20px;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.book-calendar-data-container::-webkit-scrollbar-button:start:decrement:hover,
+.book-calendar-data-container::-webkit-scrollbar-button:end:increment:hover {
+  cursor: pointer;
+}
+
 .book-calendar-header {
   width: 100%;
+  background: #f8f8f8;
 }
-.book-calendar-prev {
-  float: left;
+.nav-arrow {
+  background: url('images/left-arrow.png') no-repeat center center;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  left: 15px;
+  display: block;
+  top: 11px;
 }
-.book-calendar-next {
-  float: right;
+.nav-arrow.book-calendar-next {
+  right: 15px;
+  background: url('images/right-arrow.png') no-repeat center center;
+  left: initial;
+}
+
+
+@media(max-width: 767px) {
+  .book-calendar-wrapper {
+    margin-left: 45px;
+  }
 }
