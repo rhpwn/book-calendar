@@ -1,10 +1,11 @@
 var BookCalendar = function(options) {
 
-  this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'Semptember', 'October', 'November', 'December'];
-  this.days = ['Sunday', 'Saturday', 'Friday', 'Thursday', 'Wednesday', 'Tuesday', 'Monday'];
+  this.locale = options.locale ? options.locale : 'en';
 
   this.daysCount = options.daysCount ? options.daysCount : 7;
+
   this.el = options.el;
+
   this.data = options.data;
 
   this.moveOnExisting = options.moveOnExisting;
@@ -26,6 +27,19 @@ var BookCalendar = function(options) {
   };
 
   this.cellPercentsWidth =  (100 / this.daysCount).toFixed(2);
+
+  this.getLocale = function() {
+    if(!this.language || this.language.locale != this.locale) {
+      this.language = {
+        locale: 'en',
+        months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        monthsShort: ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.', 'Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.'],
+        weekdays: ['Sunday', 'Saturday', 'Friday', 'Thursday', 'Wednesday', 'Tuesday', 'Monday'],
+        weekdaysShort: ['Sun', 'Sat', 'Fri', 'Thu', 'Wed', 'Tue', 'Mon'],
+      }
+    }
+    return this.language;
+  }
 
   this.getStartDate = function() {
     return new Date(this.startDate);
@@ -163,11 +177,17 @@ var BookCalendar = function(options) {
   };
 
   this.getMonth = function(n) {
-    return this.months[n];
+    return {
+      long: this.getLocale().months[n].charAt(0).toUpperCase() + this.getLocale().months[n].slice(1),
+      short: this.getLocale().monthsShort[n].charAt(0).toUpperCase() + this.getLocale().monthsShort[n].slice(1),
+    }
   };
 
   this.getDay = function(n) {
-    return this.days[n];
+    return {
+      long: this.getLocale().weekdays[n],
+      short: this.getLocale().weekdaysShort[n],
+    }
   };
 
   this.getMaxInputs = function() {
@@ -187,19 +207,19 @@ var BookCalendar = function(options) {
       first: 0,
       second: 0,
     }
-    colspans.firstMonth = this.getMonth(startMonth).substring(0, 3) + " " + this.startDate.getFullYear();
+    colspans.firstMonth = this.getMonth(startMonth).short + " " + this.startDate.getFullYear();
     var ix = 0;
     for(var i in displayDates) {
       if(displayDates[i].getMonth() == startMonth) {
         colspans.first ++ ;
-        colspans.lastMonth = this.getMonth(startMonth).substring(0, 3) + " " + displayDates[i].getFullYear();
+        colspans.lastMonth = this.getMonth(startMonth).short+ " " + displayDates[i].getFullYear();
       } else {
         colspans.second ++ ;
         var sm = startMonth;
         if(sm > 11) sm = 0;
         var fm = sm + 1;
         if(fm == 12) fm = 0;
-        colspans.lastMonth = this.getMonth(fm).substring(0, 3) + " " + displayDates[i].getFullYear();
+        colspans.lastMonth = this.getMonth(fm).short + " " + displayDates[i].getFullYear();
       }
     }
     return colspans;
@@ -237,11 +257,11 @@ var BookCalendar = function(options) {
     };
   },
 
-  this.onSelect =  options.onSelect ? options.onSelect : function(selectedDate) {
+  this.onSelect = options.onSelect ? options.onSelect : function(selectedDate) {
     return selectedDate;
   };
 
-  this.afterDraw =  options.afterDraw ? options.afterDraw : function(callback) {
+  this.afterDraw = options.afterDraw ? options.afterDraw : function(callback) {
     callback();
   };
 
@@ -260,7 +280,7 @@ var BookCalendar = function(options) {
         } else {
           lastCell = '';
         }
-        dt += '<td  style="width: ' + this.cellPercentsWidth + '%" class="book-calendar-day ' + lastCell + '">' + displayArray[i].getDate()  + '<br><span class="book-calendar-day-name">' + this.getDay(displayArray[i].getDay()).substring(0, 2) + '</span></td>';
+        dt += '<td  style="width: ' + this.cellPercentsWidth + '%" class="book-calendar-day ' + lastCell + '">' + displayArray[i].getDate()  + '<br><span class="book-calendar-day-name">' + this.getDay(displayArray[i].getDay()).short + '</span></td>';
       }
       var thead = '';
       if(colspans.first > 0) {

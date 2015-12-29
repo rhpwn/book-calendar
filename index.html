@@ -8,7 +8,8 @@
     </div>
 
     <script type="text/javascript">
- var dates = [];
+
+     var dates = [];
      var dat = new Date();
 
 
@@ -16,7 +17,9 @@
        dat.setHours(dat.getHours() + 1);
        dates.push(new Date(dat));
     }
+
     var calendar = new BookCalendar({
+      locale: 'en',
       el: 'book-calendar',
       moveOnExisting: false,
       startDate: new Date(),
@@ -30,7 +33,6 @@
         cb();
       }
     });
-
     </script>
   </body>
 </html>
