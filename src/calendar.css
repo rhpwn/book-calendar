@@ -62,7 +62,6 @@
   white-space: nowrap;
   text-indent: -5000px;
 }
-
 .book-calendar-days .book-calendar-cell-last,
 .book-calendar-months th:first-child:not(:only-child) {
   border-right: 2px solid #fff;
