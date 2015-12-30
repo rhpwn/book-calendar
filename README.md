@@ -9,6 +9,11 @@ book-calendar is a javascript calendar plugin.
 [![Build Status](https://travis-ci.org/rhpwn/book-calendar.svg?branch=master)](https://travis-ci.org/rhpwn/book-calendar)
 [![Issue Stats](http://issuestats.com/github/rhpwn/book-calendar/badge/pr)](http://issuestats.com/github/rhpwn/book-calendar)
 
+### Bower Installation
+
+book-calendar is available for Bower installation:
+`bower install book-calendar`
+
 
 ### [View demo](https://jsfiddle.net/ewk9f7u9/)
 
