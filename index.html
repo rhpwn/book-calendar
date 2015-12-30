@@ -17,10 +17,10 @@
          dat3 = new Date();
 
     dat1.setDate(dat1.getDate() + 1); dat1.setHours(11);
-    dat2.setDate(dat1.getDate() + 1); dat1.setHours(15);
-    dat3.setDate(dat1.getDate() + 1); dat1.setHours(13);
+    dat2.setDate(dat1.getDate() + 1); dat2.setHours(15);
+    dat3.setDate(dat1.getDate() + 1); dat3.setHours(13);
 
-    dates = [dat1, dat2, dat3, new Date().setHours(5), new Date().setHours(8) ];
+    dates = [dat1, dat2, dat3, new Date().setHours(5), new Date().setHours(9) ];
 
     var calendar = new BookCalendar({
       data: dates,
