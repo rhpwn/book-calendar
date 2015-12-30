@@ -43,9 +43,7 @@ Sample Usage
      <script src="dist/locale/ro.js"></script>
   </head>
   <body>
-    <div style="width: 750px;">
-      <div id="book-calendar" class="book-calendar">
-      </div>
+    <div id="book-calendar" class="book-calendar">
     </div>
     <script type="text/javascript">
 
