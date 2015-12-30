@@ -17,14 +17,6 @@ module.exports = function(grunt) {
         flatten: true,
         filter: 'isFile',
       },
-      images: {
-        expand: true,
-        cwd: 'src/images/',
-        src: '**',
-        dest: 'dist/images/',
-        flatten: true,
-        filter: 'isFile',
-      }
     },
     uglify: {
       target: {

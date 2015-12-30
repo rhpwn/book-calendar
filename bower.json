@@ -1,0 +1,25 @@
+{
+  "name": "book-calendar",
+  "description": "Calendar with hour select",
+  "main": "./src/calendar.js",
+  "authors": [
+    "Dinu Rodnitchi"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "calendar",
+    "date",
+    "time"
+  ],
+  "homepage": "https://github.com/rhpwn/book-calendar",
+  "moduleType": [
+    "amd"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
