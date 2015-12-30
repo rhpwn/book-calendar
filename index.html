@@ -2,7 +2,7 @@
   <head>
     <link type="text/css" rel="stylesheet" href="dist/calendar.min.css">
     <script src="dist/calendar.min.js"></script>
-     <script src="src/locale/ro.js"></script>
+     <script src="dist/locale/ro.js"></script>
   </head>
   <body>
 
@@ -16,20 +16,19 @@
      var dates = [];
      var dat = new Date();
 
-
      for(var i=0; i < 200; i++) {
        dat.setHours(dat.getHours() + 1);
        dates.push(new Date(dat));
     }
 
     var calendar = new BookCalendar({
+      data: dates,
       locale: 'ro',
       el: 'book-calendar',
       moveOnExisting: false,
       startDate: new Date(),
       step: 1,
       daysCount: 14,
-      data: dates,
       onMoveLeft: function(cb) {
         cb();
       },

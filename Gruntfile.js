@@ -9,6 +9,22 @@ module.exports = function(grunt) {
         src: 'src/calendar.css',
         dest: 'dist/calendar.css',
       },
+      locale: {
+        expand: true,
+        cwd: 'src/locale/',
+        src: '**',
+        dest: 'dist/locale/',
+        flatten: true,
+        filter: 'isFile',
+      },
+      images: {
+        expand: true,
+        cwd: 'src/images/',
+        src: '**',
+        dest: 'dist/images/',
+        flatten: true,
+        filter: 'isFile',
+      }
     },
     uglify: {
       target: {
