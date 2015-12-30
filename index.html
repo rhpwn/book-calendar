@@ -4,19 +4,23 @@
     <script src="dist/calendar.min.js"></script>
   </head>
   <body>
-    <div style="width: 750px;">
+    <div style="width: 500px;">
       <div id="book-calendar" class="book-calendar">
       </div>
     </div>
     <script type="text/javascript">
 
      var dates = [];
-     var dat = new Date();
+     var dat = new Date(),
+         dat1 = new Date(),
+         dat2 = new Date(),
+         dat3 = new Date();
 
-     for(var i=0; i < 200; i++) {
-       dat.setHours(dat.getHours() + 1);
-       dates.push(new Date(dat));
-    }
+    dat1.setDate(dat1.getDate() + 1); dat1.setHours(11);
+    dat2.setDate(dat1.getDate() + 1); dat1.setHours(15);
+    dat3.setDate(dat1.getDate() + 1); dat1.setHours(13);
+
+    dates = [dat1, dat2, dat3, new Date().setHours(5), new Date().setHours(8) ];
 
     var calendar = new BookCalendar({
       data: dates,
@@ -25,7 +29,7 @@
       moveOnExisting: false,
       startDate: new Date(),
       step: 1,
-      daysCount: 14,
+      daysCount: 7,
       onMoveLeft: function(cb) {
         cb();
       },
