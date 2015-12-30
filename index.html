@@ -2,15 +2,12 @@
   <head>
     <link type="text/css" rel="stylesheet" href="dist/calendar.min.css">
     <script src="dist/calendar.min.js"></script>
-     <script src="dist/locale/ro.js"></script>
   </head>
   <body>
-
     <div style="width: 750px;">
       <div id="book-calendar" class="book-calendar">
       </div>
     </div>
-
     <script type="text/javascript">
 
      var dates = [];
@@ -23,7 +20,7 @@
 
     var calendar = new BookCalendar({
       data: dates,
-      locale: 'ro',
+      locale: 'en',
       el: 'book-calendar',
       moveOnExisting: false,
       startDate: new Date(),
