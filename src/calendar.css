@@ -55,6 +55,7 @@
 .book-calendar-months th {
   line-height: 38px;
   height: 38px;
+  text-align: center;
 }
 .book-calendar-months th[colspan="1"] {
   overflow: hidden;
