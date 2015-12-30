@@ -3,11 +3,15 @@ book-calendar
 
 book-calendar is a javascript calendar plugin. 
 
+![alt text](https://raw.githubusercontent.com/rhpwn/book-calendar/master/calendar-screenshot.png "Calendar screenshot")
+
+
 [![Build Status](https://travis-ci.org/rhpwn/book-calendar.svg?branch=master)](https://travis-ci.org/rhpwn/book-calendar)
 [![Issue Stats](http://issuestats.com/github/rhpwn/book-calendar/badge/pr)](http://issuestats.com/github/rhpwn/book-calendar)
 
 
-### [Demo](https://jsfiddle.net/ewk9f7u9/)
+### [View demo](https://jsfiddle.net/ewk9f7u9/)
+
 
 
 
