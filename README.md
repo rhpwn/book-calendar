@@ -58,10 +58,9 @@ Sample Usage
     }
 
     var calendar = new BookCalendar({
+      el: 'book-calendar',
       data: dates,
       locale: 'ro',
-      el: 'book-calendar',
-      startDate: new Date(),
     });
     </script>
   </body>
