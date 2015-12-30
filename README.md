@@ -26,8 +26,6 @@ Options
 | startDate |	date |	new Date() |	Start Date for Calendar |
 | step | integer |	1 |	increment step |
 | daysCount | integer |	7 |	Count of days displayed in Calendar |
-| onMoveLeft | function(cb) {} |	null |	On move left (back) event |
-| onMoveRight | function(cb) {} |	null |	On move right (forward) event |
 
 
 Sample Usage
