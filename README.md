@@ -9,6 +9,11 @@ book-calendar is a javascript calendar plugin.
 [![Build Status](https://travis-ci.org/rhpwn/book-calendar.svg?branch=master)](https://travis-ci.org/rhpwn/book-calendar)
 [![Issue Stats](http://issuestats.com/github/rhpwn/book-calendar/badge/pr)](http://issuestats.com/github/rhpwn/book-calendar)
 
+### Bower Installation
+
+book-calendar is available for Bower installation:
+`bower install book-calendar`
+
 
 ### [View demo](https://jsfiddle.net/ewk9f7u9/)
 
@@ -26,8 +31,6 @@ Options
 | startDate |	date |	new Date() |	Start Date for Calendar |
 | step | integer |	1 |	increment step |
 | daysCount | integer |	7 |	Count of days displayed in Calendar |
-| onMoveLeft | function(cb) {} |	null |	On move left (back) event |
-| onMoveRight | function(cb) {} |	null |	On move right (forward) event |
 
 
 Sample Usage
@@ -40,9 +43,7 @@ Sample Usage
      <script src="dist/locale/ro.js"></script>
   </head>
   <body>
-    <div style="width: 750px;">
-      <div id="book-calendar" class="book-calendar">
-      </div>
+    <div id="book-calendar" class="book-calendar">
     </div>
     <script type="text/javascript">
 
@@ -55,10 +56,9 @@ Sample Usage
     }
 
     var calendar = new BookCalendar({
+      el: 'book-calendar',
       data: dates,
       locale: 'ro',
-      el: 'book-calendar',
-      startDate: new Date(),
     });
     </script>
   </body>
