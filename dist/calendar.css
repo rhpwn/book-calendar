@@ -85,7 +85,6 @@
   max-height: 350px;
   border-top: 2px solid #fff;
   direction: rtl;
-  width: calc(100% + 35px);
   display: block;
   position: relative;
   margin-left: -45px;
