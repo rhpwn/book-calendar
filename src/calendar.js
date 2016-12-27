@@ -317,7 +317,7 @@ var BookCalendar = function(options) {
               var tempDate = new Date(this.selectedDate);
 
               //TODO: do this with getTime();
-              if(display.getFullYear() == this.selectedDate.getFullYear() && display.getMonth() == this.selectedDate.getMonth() && display.getDate() == this.selectedDate.getDate() && display.getHours() == this.selectedDate.getHours() && display.getMinutes() == this.selectedDate.getMinutes()) {
+              if(display.getFullYear() == this.selectedDate.getFullYear() && display.getMonth() == this.selectedDate.getMonth() && display.getDate() == this.selectedDate.getDate() && display.getUTCHours() == this.selectedDate.getUTCHours() && display.getUTCMinutes() == this.selectedDate.getUTCMinutes()) {
                 cellActive += " book-calendar-cell-active-selected";
               }
             }
