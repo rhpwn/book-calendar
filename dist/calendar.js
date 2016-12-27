@@ -95,7 +95,8 @@ var BookCalendar = function(options) {
     for(var i in dates) {
       var day = new Date(dates[i].day);
       if(day.getTime() == date.getTime()) {
-        return dates[i].times.sort();
+        var times = dates[i].times.sort();
+        return times;
       }
     }
     return [];
@@ -299,13 +300,16 @@ var BookCalendar = function(options) {
         for(var j = 0; j <= dc ; j++) {
           var hours = this.getHoursByDate(displayDates[j]);
           var cellActive = '';
+
+
           var display = new Date(hours[i]);
-          var displayHours =  display.getHours() + "<sup>" + (display.getMinutes()<10 ? '0' : '') + display.getMinutes() + '</sup>';
+
+          var displayHours =  display.getUTCHours() + "<sup>" + (display.getUTCMinutes()<10 ? '0' : '') + display.getUTCMinutes() + '</sup>';
           var nd = new Date(display);
           if(hours[i]) {
             cellActive = "book-calendar-cell-active book-calendar-cell-active-" + this.el;
             nd.setDate(nd.getDate() + 1);
-            if(display.getMonth() != nd.getMonth()) {
+            if(display.getUTCMonth() != nd.getUTCMonth()) {
               cellActive += " book-calendar-cell-last";
             }
 
@@ -322,7 +326,7 @@ var BookCalendar = function(options) {
             displayHours = '&nbsp;';
             cellActive = "book-calendar-cell-disabled";
           }
-          dataText += '<td style="width: ' + this.cellPercentsWidth+ '%" data-date="' + display + '" class="book-calendar-cell ' + cellActive + '"> ' + displayHours + ' </td>';
+          dataText += '<td style="width: ' + this.cellPercentsWidth+ '%" data-date="' + display.toUTCString() + '" class="book-calendar-cell ' + cellActive + '"> ' + displayHours + ' </td>';
         }
         dataText += '</tr>';
       }
