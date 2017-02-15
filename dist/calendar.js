@@ -49,14 +49,17 @@ var BookCalendar = function(options) {
 
   this.getEndDate = function() {
     var ino = new Date(this.startDate);
-    ino.setDate(ino.getDate() + this.daysCount); // this.daysCount - 1 (not tested)
+    ino.setDate(ino.getDate() + this.daysCount);
     return new Date(ino);
   };
 
   this.init = function() {
-    var template = '<div class="book-calendar-wrapper"><table width="100%" class="book-calendar-main-container"> <tr> <td> <table class="book-calendar-header"> <thead> <tr class="book-calendar-months"><button style="border: none;" class="nav-arrow book-calendar-prev"></button><button style="border: none;" class="nav-arrow book-calendar-next"></button></tr><tr class="book-calendar-days"> </tr></thead> </table> </td></tr><tr> <td> <div class="book-calendar-data-container"> <table width="100%"> <tbody class="book-calendar-data"> </tbody> </table> </div></td></tr></table></div>';
+    var template = '<div class="book-calendar-wrapper"><table width="100%" class="book-calendar-main-container"> <tr> <td> <table class="book-calendar-header"> <thead> <tr class="book-calendar-months"><button style="border: none;" class="nav-arrow book-calendar-prev"></button><button style="border: none;" class="nav-arrow book-calendar-next"></button></tr><tr class="book-calendar-days"> </tr></thead> </table> </td></tr><tr> <td> <div class="book-calendar-data-container"> <table width="100%" class="book-calendar-data"> <tbody> </tbody> </table> </div></td></tr></table></div>';
     var container = document.getElementById(this.el);
     container.innerHTML = template;
+    // for (var i in this.data) {
+    //   this.data[i] = moment.utc(this.data[i]).format();
+    // }
     this.dateGroup = this.groupHoursByDay(this.data);
     this.draw();
   };
@@ -93,6 +96,11 @@ var BookCalendar = function(options) {
   }
 
   this.groupHoursByDay = function(dates) {
+
+    // for(var i in dates) {
+    //   dates[i] = new Date(this.getDate(new Date(dates[0]).getTime()))
+    // };
+
     var dob = {};
     for(var i in dates) {
       var day = new Date(dates[i]);
@@ -103,12 +111,39 @@ var BookCalendar = function(options) {
       }
       dob[day].push(new Date(dates[i]));
     }
+
+
+    // var groups = _.groupBy(dates, function(date) {
+    //   return moment(date).startOf('day').format();
+    // });
+
+    //     console.log(dob);
+    //     console.log("+++");
+    //     console.log(groups);
+
     var obj = _.map(dob, function(group, day) {
       return {
         day: day,
         times: group
       }
     });
+
+    // var obj = dates.reduce(function(acc, d) {
+    //   var pk = new Date(d);
+    //   pk.setHours(0,0,0,0);
+    //   var p = pk.toString();
+    //   if (!acc[0].hasOwnProperty(p)) acc[0][p] = [];
+    //   acc[0][p].push(d);
+    //   return acc;
+    // },[{}])
+    // .reduce(function(acc, v){
+    //   Object.keys(v).forEach(function(k){acc.push({day:k, times:v[k]});});
+    //   return acc;
+    // },[]);
+
+    // console.log("???????");
+    // console.log(obj);
+    // console.log("???????");
     return obj;
   };
 
